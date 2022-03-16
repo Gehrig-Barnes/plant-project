@@ -8,15 +8,31 @@ import Profile from './components/Profile'
 
 function App() {
   const [user, setUser] = useState(null);
+  const [removeRequest, setRemoveRequest] = useState(false);
+  const [plants, setPlants] = useState([])
+
+  
 
   function updateHandler(about){
     setUser(about)
   }
-
- 
-
-
   const navigate = useNavigate()
+
+  useEffect(() => {
+    fetch("/uploads")
+      .then((r) => r.json())
+      .then((data) => setPlants(data));
+  }, [removeRequest]);
+
+  function handleRemovePlant(id) {
+    fetch(`/uploads/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(setRemoveRequest(!removeRequest))
+  }
+
 
   useEffect(() => {
     // auto-login
@@ -54,7 +70,7 @@ if (!user) return (
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
      <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
-       <Route path="/profile" element={<Profile user={user} updateHandler={updateHandler}/>}/>
+       <Route path="/profile" element={<Profile user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
      </Routes>
     </div>
   );
