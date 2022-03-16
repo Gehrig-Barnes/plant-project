@@ -9,7 +9,12 @@ import Profile from './components/Profile'
 function App() {
   const [user, setUser] = useState(null);
 
-  
+  function updateHandler(about){
+    setUser(about)
+  }
+
+ 
+
 
   const navigate = useNavigate()
 
@@ -49,7 +54,7 @@ if (!user) return (
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
      <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
-       <Route path="/profile" element={<Profile user={user}/>}/>
+       <Route path="/profile" element={<Profile user={user} updateHandler={updateHandler}/>}/>
      </Routes>
     </div>
   );

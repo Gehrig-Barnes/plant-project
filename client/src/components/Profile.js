@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import AboutPatch from './AboutPatch'
 
-function Profile({user}){
+function Profile({user, updateHandler}){
     const [flipAbout, setFlipAbout] = useState(false)
 
     function handleFlipAbout(){
@@ -19,7 +19,7 @@ function Profile({user}){
             <h3>about me:{user.about}</h3>
             {flipAbout?(
                 <div>
-                <AboutPatch user={user}/>
+                <AboutPatch user={user} updateHandler={updateHandler}/>
                 <button onClick={handleFlipAbout}>close</button>
                 </div>
             ):(
