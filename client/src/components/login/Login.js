@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
+import LoginForm from "../loginform/LoginForm";
+import SignUpForm from "../signupform/SignUpForm";
 import {Container, Button, Figure, Row, Col} from 'react-bootstrap';
 
 

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import PlantCard from './PlantCard'
-import AboutPatch from './AboutPatch'
-import PlantPost from './PlantPost'
+import PlantCard from '../plantcard/PlantCard'
+import AboutPatch from '../aboutpatch/AboutPatch'
+import PlantPost from '../plantpost/PlantPost'
 
-function Profile({user, updateHandler, handleRemovePlant}){
+function Profile({user, updateHandler, handleRemovePlant, uploadData}){
     const [flipAbout, setFlipAbout] = useState(false)
 
     function handleFlipAbout(){
@@ -35,7 +35,7 @@ function Profile({user, updateHandler, handleRemovePlant}){
                 </div>
             )}
             {/* have own card */}
-            <PlantPost user={user} updateHandler={updateHandler}/>
+            <PlantPost user={user} updateHandler={updateHandler} uploadData={uploadData}/>
             {/* have own card */}
             <h3>My Post</h3>
             {uploads.map((post) => {
