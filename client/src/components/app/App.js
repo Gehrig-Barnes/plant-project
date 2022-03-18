@@ -1,15 +1,23 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import Login from './components/Login';
+import Login from '../login/Login';
 import { Routes, Route, useNavigate } from "react-router-dom";
-import NavBar from './components/NavBar';
+import NavBar from '../navbar/NavBar';
 import {Container, Alert} from 'react-bootstrap';
-import Profile from './components/Profile'
+import Profile from '../profile/Profile'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUploads } from "../plantpost/postsSlice";
 
 function App() {
   const [user, setUser] = useState(null);
   const [removeRequest, setRemoveRequest] = useState(false);
   const [plants, setPlants] = useState([])
+  const uploadData = useSelector((state) => state.posts.entities);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUploads());
+  }, [dispatch]);
 
   
 
@@ -70,7 +78,7 @@ if (!user) return (
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
      <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
-       <Route path="/profile" element={<Profile user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
+       <Route path="/profile" element={<Profile uploadData={uploadData} user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
      </Routes>
     </div>
   );
