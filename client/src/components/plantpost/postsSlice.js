@@ -20,6 +20,31 @@ export const addNewPost = createAsyncThunk(
   }
 )
 
+export const deleteUpload = createAsyncThunk(
+  "uploads/deleteUpload",
+  async (commentId) => {
+    fetch(`/comments/${commentId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return commentId;
+  }
+);
+
+export const updateUpload = createAsyncThunk(
+  "uploads/updateUpload",
+  async (updateUpload) => {
+    return fetch(`/uploads/${updateUpload.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateUpload),
+    }).then((res) => res.json());
+  }
+);
 
 
 
@@ -43,6 +68,12 @@ const postsSlice = createSlice({
     [fetchUploads.fulfilled](state, action) {
       state.entities = action.payload;
       state.status = "idle";
+    },
+    [updateUpload.fulfilled](state, action) {
+      state = state.filter(
+        (upload) => upload.id !== action.payload.id
+      );
+      state = [...state, action.payload];
     },
     
   },

@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     end
 
     def index 
-        render json: current_user, status: :ok
+        user = current_user
+        render json: user, status: :ok
     end
 
     def show

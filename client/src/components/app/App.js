@@ -7,6 +7,7 @@ import {Container, Alert} from 'react-bootstrap';
 import Profile from '../profile/Profile'
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUploads } from "../plantpost/postsSlice";
+import UploadEdit from '../uploadEdit/UploadEdit'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -78,6 +79,7 @@ if (!user) return (
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
      <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
+       <Route path="profile/:id" element={<UploadEdit/>}/>
        <Route path="/profile" element={<Profile uploadData={uploadData} user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
      </Routes>
     </div>

@@ -27,7 +27,7 @@ function LoginForm({onLogin}){
     return (
         <div>
             <Container>
-            <h1>Inventory & POS</h1>
+            <h1>HELLO!</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Email address</Form.Label>

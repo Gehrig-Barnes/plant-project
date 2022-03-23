@@ -18,7 +18,7 @@ function PlantPost({user, uploadData}){
         const value = e.target.value
         setDescription(value)
     }
-    console.log(uploadData)
+    
     const newPost = {
         // id: uploadData.length + 1,
         image: image,
@@ -33,23 +33,6 @@ function PlantPost({user, uploadData}){
     
   }
 
-//    function handleSubmit(e){
-//        e.preventDefault();
-//        fetch('/uploads', {
-//             method: "POST",
-//             headers: {
-//             "Content-type": "application/json",
-//         },
-//             body: JSON.stringify({
-//                 image: image,
-//                 description: description,
-//                 likes: 0,
-//                 user_id: user.id
-//             }),
-//         })
-//         .then((r) => r.json())
-        
-//    }
     return (
         <div>
             <Form onSubmit={handleSubmit}>
