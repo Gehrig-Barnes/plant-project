@@ -8,6 +8,8 @@ import Profile from '../profile/Profile'
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUploads } from "../plantpost/postsSlice";
 import UploadEdit from '../uploadEdit/UploadEdit'
+import UserFeed from '../userfeed/UserFeed'
+import FollowProfile from '../profile/FollowProfile'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,6 +34,8 @@ function App() {
       .then((r) => r.json())
       .then((data) => setPlants(data));
   }, [removeRequest]);
+
+  
 
   function handleRemovePlant(id) {
     fetch(`/uploads/${id}`, {
@@ -79,8 +83,10 @@ if (!user) return (
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
      <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
+       <Route path="/user/:id" element={<FollowProfile/>}/>
        <Route path="profile/:id" element={<UploadEdit/>}/>
        <Route path="/profile" element={<Profile uploadData={uploadData} user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
+       <Route path='/' element={<UserFeed user={user}/>}/>
      </Routes>
     </div>
   );

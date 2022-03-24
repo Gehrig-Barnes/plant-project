@@ -2,27 +2,77 @@ import React, { useState } from "react";
 import PlantCard from '../plantcard/PlantCard'
 import AboutPatch from '../aboutpatch/AboutPatch'
 import PlantPost from '../plantpost/PlantPost'
+import FollowingCard from '../FollowingCard/FollowingCard'
+import FollowerCard from '../FollowingCard/FollowerCard'
+import { Card, Button, ListGroup, Dropdown, Modal } from 'react-bootstrap'
 
 function Profile({user, updateHandler, handleRemovePlant, uploadData}){
-    const [flipAbout, setFlipAbout] = useState(false)
-
+    const [flipAbout, setFlipAbout] = useState(false);
+    const [showFollowing, setShowFollowing] = useState(false);
+    const [showFollowers, setShowFollowers] = useState(false);
+    const uploads = user.uploads;
+    const followings = user.followings;
+    const followers = user.followers;
+    
+    
+    
     function handleFlipAbout(){
-        setFlipAbout(!flipAbout)
+        setFlipAbout(!flipAbout);
     }
 
-    const uploads = user.uploads
+    function handleShowFollowing (){
+        setShowFollowing(!showFollowing);
+    }
 
-
-
-    
-
-   
+    function handleShowFollowers(){
+        setShowFollowers(!showFollowers);
+    }
+  
     return (
         <div>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAM1BMVEXk5ueutLfn6eqrsbTp6+zg4uOwtrnJzc/j5earsbW0uby4vcDQ09XGyszU19jd3+G/xMamCvwDAAAFLklEQVR4nO2d2bLbIAxAbYE3sDH//7WFbPfexG4MiCAcnWmnrzkjIRaD2jQMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMw5wQkHJczewxZh2lhNK/CBOQo1n0JIT74/H/qMV0Z7GU3aCcVPuEE1XDCtVLAhgtpme7H0s1N1U7QjO0L8F7llzGeh1hEG/8Lo7TUmmuSrOfns9xnGXpXxsONPpA/B6OqqstjC6Ax/0ujkNdYQQbKNi2k64qiiEZ+ohi35X+2YcZw/WujmslYewiAliVYrxgJYrdwUmwXsU+RdApUi83oNIE27YvrfB/ZPg8+BJETXnqh9CVzBbTQHgojgiCvtqU9thFJg/CKz3VIMKMEkIXxIWqIpIg2SkjYj+xC816mrJae2aiWGykxRNsW0UwiJghJDljYI5CD8GRiCtIsJxizYUPQ2pzItZy5pcisTRdk/a9m4amtNNfBuQkdVhSaYqfpNTSFGfb9GRIakrE2Pm+GFLaCQPqiu0OpWP+HMPQQcgQMiQprWXNmsVwIjQjYi/ZrhAqNTCgr2gu0Jnz85RSSjso0HkMFZ0YZjKkc26a/jlmh9JiDyDxi9oeorTYAzZkwwoMz19pzj9bnH/GP/+qbchjSGflneWYhtTuKdMOmNKZcJ5TjInQKcYXnESd/jQxy0ENpULTNGOGgxpap/oyw9pbUAqhfx2Dbkhovvfgz4iUzoM9+GlK6/Mh4q29hyC1mwro30hpVVLPF9wYQr71RazOeM5/cw81iBRD+A03aM9/C/obbrKjbYSpCmIVG3qT/Q8oeUo3Rz0IL7vI1tEbCB9pSiu8I/aV8x3Kg/BGWrWp4ZVs0nZfmAoEG4h/61yHYIJiFSl6Q0Vk6tTW1N8kYp8hdOkfHYYMXd2Qft+8CYwqYDSKvqIh+MCF8Wgca2u/cwdgeW3TtuVn6+1oBs3yLo5C2JpK6CvQzGpfUkz9UG/87gCsi5o2LIXolxN0FbwAsjOLEr+YJmXn7iR6N0BCt5p5cMxm7eAsfS+/CACQf4CTpKjzgkvr2cVarVTf96372yut7XLJ1sa7lv6VcfgYrWaxqr3Wlo1S6pvStr22sxOtTNPLzdY3nj20bPP+ejFdJYkLsjGLdtPBEbe/mr2bQKiXWJDroA+vtzc0p9aahuwqHMDYrQEXHEw9jwQl3drMpts9JBU1SdktPe5FBRdJQ6bwXBpa57ib2A8kukQDzMjh++Uo7Fo6Wd02Pkf4fknqoo4HtvAIjsqUcjx6DIPgWCaOML9rKI/oqD9/lgNrn+eF+p7j8tnzHBiR7+kdUGw/+V1Kzkc75mMy6U+FMaxjPibiM1U1uGM+puInHpmALZCgP4pt7i840MV8+0R1zPsRB6UTcqpizncYwZ89syDydfyWCwXB1l8/zRNGWbTG/GHKUm9AkxHMc/EGSk3z2+ArEhPEV5TUBLEvUGFcjEUH80J/jveTGOAJEljJbILWGQT3zRYiwuKsUXN1EEJAzBhRJFll7mBUG7KD8EqPkKekBREaL8hMDZLQSG6AQjtHPYmvTQnX0TtpC1SYCe2YdkkyLP3jj5BSbKiuR585eQhTgoje6yIb0Yb0C+mV6EYvebqw5SDy2WmubogZiF2AVxPC2FpDf8H2Q9QWo6IkjUxTWVEI3WY/wrCeSuqJ+eRWzXR/JXwgVjUMozbCOfoEZiSiKVGepqv5CJ8RyR4D7xBeamqa7z3BJ/z17JxuBPdv93d/a2Ki878MMAzDMAzDMAzDMAzDMF/KP09VUmxBAiI3AAAAAElFTkSuQmCC"/>
+            <img src={user.image}/>
             {/* have own card */}
             <h3>{user.username}</h3>
-            {/* have own card */}
+            <h4 onClick={handleShowFollowing}>Following: {followings.length}</h4>
+            <h4 onClick={handleShowFollowers}>Followers: {followers.length}</h4>
+            <Modal show={showFollowing} onHide={handleShowFollowing}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Following</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {followings.map((following) => {
+                        return (
+                            <FollowingCard
+                                key={following.id}
+                                username={following.username}
+                                image={following.image}
+                                id={following.id}
+                            />
+                        )
+                    })}
+                </Modal.Body>
+            </Modal>
+
+            <Modal show={showFollowers} onHide={handleShowFollowers}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Followers</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {followers.map((follower) => {
+                        return (
+                            <FollowerCard
+                                key={follower.id}
+                                username={follower.username}
+                                image={follower.image}
+                                id={follower.id}
+                            />
+                        )
+                    })}
+                </Modal.Body>
+            </Modal>
+            
+            
+          
             <h3>about me:{user.about}</h3>
             {flipAbout?(
                 <div>

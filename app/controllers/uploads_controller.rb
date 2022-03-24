@@ -34,6 +34,6 @@ class UploadsController < ApplicationController
     end
 
     def update_params
-        params.permit(:description)
+        params.permit(:description, :likes)
     end
 end

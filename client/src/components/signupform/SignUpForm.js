@@ -9,6 +9,7 @@ function SignUpForm({onLogin}){
     const [gender, setGender] = useState("");
     const [age, setAge] = useState(null)
     const [about, setAbout] = useState('')
+    const [image, setImage] = useState('')
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +27,8 @@ function SignUpForm({onLogin}){
                 password_confirmation: passwordConfirmation,
                 age,
                 gender,
-                about
+                about,
+                image
             })
         }).then((r) => {
             setIsLoading(false);
@@ -85,6 +87,16 @@ function SignUpForm({onLogin}){
                         autoComplete="current-password" 
                         value={passwordConfirmation}
                         onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Profile Picture</Form.Label>
+                    <Form.Control
+                        id="profile_picture"
+                        type="text"
+                        placeholder="Profile Picture"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
