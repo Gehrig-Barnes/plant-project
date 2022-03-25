@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :uploads
   resources :users
+  resources :follows
   
 
   post "/signup", to: "users#create"
