@@ -5,23 +5,56 @@ import {Button, Modal} from 'react-bootstrap'
 import FollowingCard from '../FollowingCard/FollowingCard'
 import FollowerCard from '../FollowingCard/FollowerCard'
 
-
-
-function FollowProfile (){
+function FollowProfile ({user}){
     const {id} = useParams();
-    const [user, setUser] = useState('')
+    const [otherUser, setOtherUser] = useState('')
     const [follow, setFollow] =useState(false)
     const [showFollowing, setShowFollowing] = useState(false);
     const [showFollowers, setShowFollowers] = useState(false);
-
-    const followings = user.followings;
-    const followers = user.followers;
-
-    console.log(followers)
+    const [followingsId, setFollowingsId] = useState([])
+    const followings = otherUser.followings;
+    const followers = otherUser.followers;
     
-    function handleFollow(){
-        setFollow(!follow)
+    console.log(otherUser.id)
+    
 
+    function handleFollow(){
+        if (!follow) {
+            
+            fetch('/follows', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                follower_id: user.id, 
+                followed_user_id: otherUser.id
+            }),
+        })
+        .then((r) => r.json())
+        .then((data) => {
+            setFollow(true)
+            
+           
+        })
+        }
+        else if (follow){
+            fetch('/delete_follow', {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    follower_id: user.id, 
+                    followed_user_id: otherUser.id
+                }),
+            })
+            .then((r) => r.json())
+            .then((data) => {
+                setFollow(false)
+               
+            })
+        }
     }
     
     function handleShowFollowing (){
@@ -32,13 +65,23 @@ function FollowProfile (){
         setShowFollowers(!showFollowers);
     }
 
-    const uploads = user.uploads;
+    const uploads = otherUser.uploads;
+
+    useEffect(() => {
+      fetch(`/user_followings`)
+        .then((r) => r.json())
+        .then((data) => {
+          setFollowingsId(data);
+          
+        });
+    }, []);
 
     useEffect(() => {
         fetch(`/user_follow/${id}`)
           .then((r) => r.json())
           .then((data) => {
-            setUser(data);
+            setOtherUser(data);
+            followingsId.includes(data.id) ? setFollow(false) : setFollow(true)
             
           });
       }, [id]);
@@ -47,17 +90,17 @@ function FollowProfile (){
     return (
         <div>
             
-            <img src={user.image}/>
+            <img src={otherUser.image}/>
             {follow?(
                 <Button onClick={handleFollow}>Unfollow</Button>
             ):(
                 <Button onClick={handleFollow}>
-                    Follow
+                    follow
                 </Button>
             )}
-            <h3>{user.username}</h3>
+            <h3>{otherUser.username}</h3>
             
-            <h3>about me:{user.about}</h3>
+            <h3>about me:{otherUser.about}</h3>
             <h4 onClick={handleShowFollowing}>Following: {followings ? followings.length : console.log(null)}</h4>
             <h4 onClick={handleShowFollowers}>Followers: {followers ? followers.length : console.log(null)}</h4>
 

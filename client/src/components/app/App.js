@@ -83,7 +83,7 @@ if (!user) return (
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
      <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
-       <Route path="/user/:id" element={<FollowProfile/>}/>
+       <Route path="/user/:id" element={<FollowProfile user={user}/>}/>
        <Route path="profile/:id" element={<UploadEdit/>}/>
        <Route path="/profile" element={<Profile uploadData={uploadData} user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
        <Route path='/' element={<UserFeed user={user}/>}/>
