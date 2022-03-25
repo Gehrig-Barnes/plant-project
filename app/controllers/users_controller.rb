@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorize, only: :create
+    skip_before_action :authorize, :only => [:create, :create_follow]
   
     def create
         user = User.create!(user_params)
@@ -37,6 +37,10 @@ class UsersController < ApplicationController
         render json: users, status: :ok
     end
 
+    def create_follow
+        new_follow = Follow.create!(follow_params)
+        render json: new_follow, status: :created
+    end
 
 
     private
@@ -47,5 +51,9 @@ class UsersController < ApplicationController
 
     def about_params
         params.permit(:about)
+    end
+
+    def follow_params
+        params.permit(:follower_id, :followed_user_id)
     end
 end

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/followings/:id", to: "users#followings"
   get "/all_users", to: "users#all_users"
   get "/followings", to: "users#followings"
-  post '/users/:id/follow', to: "users#follow", as: "follow_user"
+  post "/follow", to: "users#create_follow"
+
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
