@@ -15,7 +15,7 @@ function FollowProfile ({user}){
     const followings = otherUser.followings;
     const followers = otherUser.followers;
     
-    console.log(otherUser.id)
+    
     
 
     function handleFollow(){
@@ -31,12 +31,7 @@ function FollowProfile ({user}){
                 followed_user_id: otherUser.id
             }),
         })
-        .then((r) => r.json())
-        .then((data) => {
-            setFollow(true)
-            
-           
-        })
+            setFollow(true) 
         }
         else if (follow){
             fetch('/delete_follow', {
@@ -49,11 +44,7 @@ function FollowProfile ({user}){
                     followed_user_id: otherUser.id
                 }),
             })
-            .then((r) => r.json())
-            .then((data) => {
                 setFollow(false)
-               
-            })
         }
     }
     
@@ -72,7 +63,7 @@ function FollowProfile ({user}){
         .then((r) => r.json())
         .then((data) => {
           setFollowingsId(data);
-          
+          console.log('following list', data )
         });
     }, []);
 
@@ -81,7 +72,8 @@ function FollowProfile ({user}){
           .then((r) => r.json())
           .then((data) => {
             setOtherUser(data);
-            followingsId.includes(data.id) ? setFollow(false) : setFollow(true)
+            followingsId.includes(data.id) ? setFollow(true) : setFollow(false)
+            console.log("user_profile", data)
             
           });
       }, [id]);
