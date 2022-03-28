@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Alert } from 'react-bootstrap'
+import { Container, Form, Button, Alert, Card } from 'react-bootstrap'
+import "./SignUp.css"
 
 function SignUpForm({onLogin}){
     const [email, setEmail] = useState("");
@@ -43,7 +44,9 @@ function SignUpForm({onLogin}){
     return (
         <div>
             <Container>
-            <h1>Sign Up Form</h1>
+            <Card style={{ width: '20rem' }} className="sign_card">
+            <Card.Body>
+            <h1>Create an Account</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Email address</Form.Label>
@@ -121,11 +124,13 @@ function SignUpForm({onLogin}){
                         onChange={(e) => setGender(e.target.value)}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit">{isLoading ? "Loading..." : "Login"}</Button>
+                <Button  type="submit">{isLoading ? "Loading..." : "Login"}</Button>
                 {errors.map(error => (
                     <Alert className="mt-3" variant="danger" key={error}>{error}</Alert>
                 ))}
             </Form>
+            </Card.Body>
+            </Card>
         </Container>
         </div>
     )

@@ -5,6 +5,8 @@ import {Button, Modal} from 'react-bootstrap'
 import FollowingCard from '../FollowingCard/FollowingCard'
 import FollowerCard from '../FollowingCard/FollowerCard'
 
+
+
 function FollowProfile ({user}){
     const {id} = useParams();
     const [otherUser, setOtherUser] = useState('')
@@ -59,15 +61,6 @@ function FollowProfile ({user}){
     const uploads = otherUser.uploads;
 
     useEffect(() => {
-      fetch(`/user_followings`)
-        .then((r) => r.json())
-        .then((data) => {
-          setFollowingsId(data);
-          console.log('following list', data )
-        });
-    }, []);
-
-    useEffect(() => {
         fetch(`/user_follow/${id}`)
           .then((r) => r.json())
           .then((data) => {
@@ -76,7 +69,27 @@ function FollowProfile ({user}){
             console.log("user_profile", data)
             
           });
-      }, [id]);
+      fetch(`/user_followings`)
+        .then((r) => r.json())
+        .then((data) => {
+          setFollowingsId(data);
+          console.log('following list', data )
+        });
+        
+    }, [id]);
+
+    
+
+    // useEffect(() => {
+    //     fetch(`/user_follow/${id}`)
+    //       .then((r) => r.json())
+    //       .then((data) => {
+    //         setOtherUser(data);
+    //         followingsId.includes(data.id) ? setFollow(true) : setFollow(false)
+    //         console.log("user_profile", data)
+            
+    //       });
+    //   }, [id]);
 
       
     return (

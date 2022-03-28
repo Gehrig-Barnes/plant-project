@@ -17,6 +17,7 @@ function App() {
   const [plants, setPlants] = useState([])
   const uploadData = useSelector((state) => state.posts.entities);
   const dispatch = useDispatch();
+  const [weather, setWeather] = useState([])
 
   useEffect(() => {
     dispatch(fetchUploads());
@@ -68,10 +69,18 @@ function App() {
     navigate("/");
 }
 
+useEffect(() => {
+  fetch("https://api.openweathermap.org/data/2.5/weather?lat=41.85&lon=-87.65&appid=0479cadb45fb034e2df702f81bb7355a")
+    .then((r) => r.json())
+    .then((data) => setWeather(data));
+}, []);
+
+
+
 if (!user) return (
     <>
     <Container>
-      <Alert className="mt-3" variant="primary" >Please Login OR Signup To Create A New Account</Alert>
+      
     </Container>
     <Login onLogin={setUser}/>
     </>
@@ -86,7 +95,7 @@ if (!user) return (
        <Route path="/user/:id" element={<FollowProfile user={user}/>}/>
        <Route path="profile/:id" element={<UploadEdit/>}/>
        <Route path="/profile" element={<Profile uploadData={uploadData} user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
-       <Route path='/' element={<UserFeed user={user}/>}/>
+       <Route path='/' element={<UserFeed user={user} weather={weather}/>}/>
      </Routes>
     </div>
   );

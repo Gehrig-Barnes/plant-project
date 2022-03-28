@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap'
+import { Container, Form, Button, Alert, Card } from 'react-bootstrap'
+import './LoginForm.css'
 
 function LoginForm({onLogin}){
     const [email, setEmail] = useState("");
@@ -25,11 +26,13 @@ function LoginForm({onLogin}){
         });
     }
     return (
-        <div>
+        <div className='background'>
             <Container>
-            <h1>HELLO!</h1>
+            <Card style={{ width: '20rem' }} className="login_card">
+            <Card.Body>
+            <h1 className="welcome">PotHeads 🪴 </h1>
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
+                <Form.Group className="login">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 
                         id="email" 
@@ -40,7 +43,7 @@ function LoginForm({onLogin}){
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className="login">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         id="password" 
@@ -51,11 +54,13 @@ function LoginForm({onLogin}){
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit">{isLoading ? "Loading..." : "Login"}</Button>
+                <button className="login_button"type="submit">{isLoading ? "Loading..." : "Login"}</button>
                 {errors.map(error => (
                     <Alert className="mt-3" variant="danger" key={error}>{error}</Alert>
                 ))}
             </Form>
+            </Card.Body>
+            </Card>
         </Container>
         </div>
     )
