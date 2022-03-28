@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, useNavigate } from 'react-router-dom';
 import FollowPlantCard from '../plantcard/FollowPlantCard'
-import {Button, Modal} from 'react-bootstrap'
+import {Button, Modal, Card, Col, Row} from 'react-bootstrap'
 import FollowingCard from '../FollowingCard/FollowingCard'
 import FollowerCard from '../FollowingCard/FollowerCard'
+import "./profile.css"
 
 
 
@@ -17,9 +18,6 @@ function FollowProfile ({user}){
     const followings = otherUser.followings;
     const followers = otherUser.followers;
     
-    
-    
-
     function handleFollow(){
         if (!follow) {
             
@@ -78,36 +76,53 @@ function FollowProfile ({user}){
         
     }, [id]);
 
-    
-
-    // useEffect(() => {
-    //     fetch(`/user_follow/${id}`)
-    //       .then((r) => r.json())
-    //       .then((data) => {
-    //         setOtherUser(data);
-    //         followingsId.includes(data.id) ? setFollow(true) : setFollow(false)
-    //         console.log("user_profile", data)
-            
-    //       });
-    //   }, [id]);
-
-      
     return (
         <div>
+            <Row className="justify-content-md-center">
+                <Col>
+                    <Card style={{ width: '10rem'}} className="profile_card">
+                        <img src={otherUser.image}/>
+                        <Card.Body>
+                            <Card.Title>{otherUser.username}</Card.Title>
+                            <h4 onClick={handleShowFollowing}>Following: {followings ? followings.length : console.log(null)}</h4>
+                            <h4 onClick={handleShowFollowers}>Followers: {followers ? followers.length : console.log(null)}</h4>
+                            {follow?(
+                            <Button onClick={handleFollow}>Unfollow</Button>
+                            ):(
+                            <Button onClick={handleFollow}>
+                                follow
+                            </Button>
+                        )}
+                        </Card.Body>
+                        
+                    </Card>
+                </Col>
+                <Col>
+                    <Card style={{ width: '30rem'}} className="about_me">
+                        <Card.Body>
+                            <Card.Title>about me:</Card.Title>
+                            <Card.Text>{otherUser.about}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                    
+                </Col>
+            </Row>            
             
-            <img src={otherUser.image}/>
-            {follow?(
-                <Button onClick={handleFollow}>Unfollow</Button>
-            ):(
-                <Button onClick={handleFollow}>
-                    follow
-                </Button>
-            )}
-            <h3>{otherUser.username}</h3>
-            
-            <h3>about me:{otherUser.about}</h3>
-            <h4 onClick={handleShowFollowing}>Following: {followings ? followings.length : console.log(null)}</h4>
-            <h4 onClick={handleShowFollowers}>Followers: {followers ? followers.length : console.log(null)}</h4>
+            <h3 className="user_post_title" className="my_post_title">Posts</h3>
+            <Card style={{ width: '28rem'}} className="posts">
+                {uploads?.map((post) => {
+                    return (
+                        <FollowPlantCard 
+                            key = {post.id}
+                            image = {post.image}
+                            description = {post.description}
+                            likes = {post.likes}
+                            id = {post.id}
+                            
+                        />
+                    )
+                })}
+            </Card>
 
             <Modal show={showFollowing} onHide={handleShowFollowing}>
                 <Modal.Header closeButton>
@@ -144,21 +159,6 @@ function FollowProfile ({user}){
                     })}
                 </Modal.Body>
             </Modal>
-            
-            <h3>My Post</h3>
-            {uploads?.map((post) => {
-                return (
-                    <FollowPlantCard 
-                        key = {post.id}
-                        image = {post.image}
-                        description = {post.description}
-                        likes = {post.likes}
-                        id = {post.id}
-                        
-                    />
-                )
-            })}
-            
         </div>
     )
 }

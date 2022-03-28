@@ -4,7 +4,8 @@ import AboutPatch from '../aboutpatch/AboutPatch'
 import PlantPost from '../plantpost/PlantPost'
 import FollowingCard from '../FollowingCard/FollowingCard'
 import FollowerCard from '../FollowingCard/FollowerCard'
-import { Card, Button, ListGroup, Dropdown, Modal } from 'react-bootstrap'
+import { Card, Modal, Col, Row } from 'react-bootstrap'
+import './profile.css'
 
 function Profile({user, updateHandler, handleRemovePlant, uploadData}){
     const [flipAbout, setFlipAbout] = useState(false);
@@ -30,64 +31,78 @@ function Profile({user, updateHandler, handleRemovePlant, uploadData}){
   
     return (
         <div>
-            <img src={user.image}/>
-            {/* have own card */}
-            <h3>{user.username}</h3>
-            <h4 onClick={handleShowFollowing}>Following: {followings.length}</h4>
-            <h4 onClick={handleShowFollowers}>Followers: {followers.length}</h4>
-            <Modal show={showFollowing} onHide={handleShowFollowing}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Following</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {followings.map((following) => {
-                        return (
-                            <FollowingCard
-                                key={following.id}
-                                username={following.username}
-                                image={following.image}
-                                id={following.id}
-                            />
-                        )
-                    })}
-                </Modal.Body>
-            </Modal>
+            <Row className="justify-content-md-center">
+                <Col>
+                    <Card style={{ width: '10rem'}} className="profile_card">
+                        <Card.Img src={user.image}/>
+                        <Card.Body>
+                            <Card.Title>{user.username}</Card.Title>
+                            <h4 onClick={handleShowFollowing}>Following: {followings.length}</h4>
+                            <h4 onClick={handleShowFollowers}>Followers: {followers.length}</h4>
+                    
+                            <Modal show={showFollowing} onHide={handleShowFollowing}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Following</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    {followings.map((following) => {
+                                        return (
+                                            <FollowingCard
+                                                key={following.id}
+                                                username={following.username}
+                                                image={following.image}
+                                                id={following.id}
+                                            />
+                                        )
+                                    })}
+                                </Modal.Body>
+                            </Modal>
 
-            <Modal show={showFollowers} onHide={handleShowFollowers}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Followers</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {followers.map((follower) => {
-                        return (
-                            <FollowerCard
-                                key={follower.id}
-                                username={follower.username}
-                                image={follower.image}
-                                id={follower.id}
-                            />
-                        )
-                    })}
-                </Modal.Body>
-            </Modal>
-            
-            
-          
-            <h3>about me:{user.about}</h3>
-            {flipAbout?(
-                <div>
-                <AboutPatch user={user} updateHandler={updateHandler}/>
-                <button onClick={handleFlipAbout}>close</button>
-                </div>
-            ):(
-                <div>
-                    <button onClick={handleFlipAbout}>Edit</button>
-                </div>
-            )}
-            {/* have own card */}
-            <PlantPost user={user} updateHandler={updateHandler} uploadData={uploadData}/>
-            {/* have own card */}
-            <h3>My Post</h3>
+                            <Modal show={showFollowers} onHide={handleShowFollowers}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Followers</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    {followers.map((follower) => {
+                                        return (
+                                            <FollowerCard
+                                                key={follower.id}
+                                                username={follower.username}
+                                                image={follower.image}
+                                                id={follower.id}
+                                            />
+                                        )
+                                    })}
+                                </Modal.Body>
+                            </Modal>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card style={{ width: '30rem'}} className="about_me">
+                        <Card.Body>
+                            <Card.Title>about me:</Card.Title>
+                            <Card.Text>{user.about}</Card.Text>
+                            {flipAbout?(
+                                    <div>
+                                    <AboutPatch user={user} updateHandler={updateHandler}/>
+                                    <button onClick={handleFlipAbout}>close</button>
+                                    </div>
+                                ):(
+                                    <div>
+                                        <button onClick={handleFlipAbout}>Edit</button>
+                                    </div>
+                                )}
+                        </Card.Body>
+                    </Card >
+                    <Card style={{ width: '30rem'}} className="post_card">
+                        <PlantPost user={user} updateHandler={updateHandler} uploadData={uploadData}/>
+                    </Card>
+                </Col>
+            </Row>
+
+            <h3 className="my_post_title">My Posts</h3>
+            <Card style={{ width: '28rem'}} className="posts">
             {uploads.map((post) => {
                 return (
                     <PlantCard 
@@ -101,6 +116,7 @@ function Profile({user, updateHandler, handleRemovePlant, uploadData}){
                     />
                 )
             })}
+            </Card>
         </div>
     )
 }

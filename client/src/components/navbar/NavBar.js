@@ -1,7 +1,7 @@
 import React from "react"
 import { Navbar, Nav } from 'react-bootstrap';
 
-function NavBar(){
+function NavBar({handleLogOutClick}){
     return (
         <div>
             <Navbar>

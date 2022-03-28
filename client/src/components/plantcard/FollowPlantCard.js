@@ -21,9 +21,10 @@ function FollowPlantCard({image, description, likes, id}){
 
     return (
         <div>
-            <h1>{description}</h1>
+            <p>{description}</p>
             <img src={image}/>
-            <h1>Claps: {likes + clap}</h1>
+            <p>Claps: {likes + clap}</p>
+            <br></br>
             <button onClick={handleLike} >👏</button>
         </div>
     )

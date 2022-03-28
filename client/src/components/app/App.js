@@ -18,12 +18,11 @@ function App() {
   const uploadData = useSelector((state) => state.posts.entities);
   const dispatch = useDispatch();
   const [weather, setWeather] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     dispatch(fetchUploads());
   }, [dispatch]);
-
-  
 
   function updateHandler(about){
     setUser(about)
@@ -36,7 +35,11 @@ function App() {
       .then((data) => setPlants(data));
   }, [removeRequest]);
 
-  
+  useEffect(() => {
+    fetch("/all_users")
+      .then((r) => r.json())
+      .then((data) => setUsers(data));
+  }, []);
 
   function handleRemovePlant(id) {
     fetch(`/uploads/${id}`, {
@@ -95,7 +98,7 @@ if (!user) return (
        <Route path="/user/:id" element={<FollowProfile user={user}/>}/>
        <Route path="profile/:id" element={<UploadEdit/>}/>
        <Route path="/profile" element={<Profile uploadData={uploadData} user={user} updateHandler={updateHandler} handleRemovePlant={handleRemovePlant}/>}/>
-       <Route path='/' element={<UserFeed user={user} weather={weather}/>}/>
+       <Route path='/' element={<UserFeed user={user} weather={weather} users={users}/>}/>
      </Routes>
     </div>
   );

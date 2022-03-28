@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import deleteUpload from '../plantpost/postsSlice'
 import { useDispatch } from "react-redux";
 import {Link} from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
  
 
@@ -16,10 +17,11 @@ function PlantCard({image, description, likes, date, handleRemovePlant, id}){
     }
     return (
         <div>
-           <h1>{description}</h1>
+           <p>{description}</p>
            <img src={image}/>
-           <h1>{likes}</h1>
-           <button onClick={() => handleRemovePlant(id)}>Remove</button>
+           <p>Claps: {likes}</p>
+           <Button onClick={() => handleRemovePlant(id)}>Remove</Button>
+           <br></br>
            <Link to={`/profile/${id}`} className="seemorebutton">Edit</Link>
         </div>
     )

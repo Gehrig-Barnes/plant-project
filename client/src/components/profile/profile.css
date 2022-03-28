@@ -1,0 +1,28 @@
+.profile_card{
+    margin-left: 10%;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 8px;
+}
+
+.about_me{
+    margin-left: -60%;
+    
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 8px;
+    margin-bottom: 5%;
+}
+
+.post_card{
+    margin-left: -60%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 8px;
+    text-align: center;
+}
+
+.my_post_title{
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.posts{
+    margin-left: 5%;
+    text-align: center;
+}
