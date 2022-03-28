@@ -93,7 +93,6 @@ if (!user) return (
   return (
     <div className="App">
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>
-     <button onClick={handleLogOutClick}>Logout</button>
      <Routes>
        <Route path="/user/:id" element={<FollowProfile user={user}/>}/>
        <Route path="profile/:id" element={<UploadEdit/>}/>
