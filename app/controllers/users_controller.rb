@@ -42,7 +42,6 @@ class UsersController < ApplicationController
         render json: new_follow, status: :created
     end
 
-
     private
 
     def user_params

@@ -21,6 +21,12 @@ class FollowsController < ApplicationController
         user_followings = User.find(session[:user_id]).followings.pluck(:id)
         render json: user_followings, status: :ok
     end
+
+    def feed
+        feed = []
+        x = User.find(session[:user_id]).followings.map{|user| user.uploads.map{|item| feed << item}}
+        render json: feed, status: :ok
+    end
     
     private
 
