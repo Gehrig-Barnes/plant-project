@@ -1,24 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {client} from '../../API/client'
+import { client } from "../../API/client";
 
-
-
-export const fetchUploads = createAsyncThunk(
-  "uploads/fetchUploads",
-  () => {
-    return fetch("/uploads")
-      .then((response) => response.json())
-      .then((data) => data);
-  }
-);
+export const fetchUploads = createAsyncThunk("uploads/fetchUploads", () => {
+  return fetch("/uploads")
+    .then((response) => response.json())
+    .then((data) => data);
+});
 
 export const addNewPost = createAsyncThunk(
-  'uploads/addNewUpload',
+  "uploads/addNewUpload",
   async (initialPost) => {
-    const response = await client.post('/uploads', initialPost)
-    return response.data
+    const response = await client.post("/uploads", initialPost);
+    return response.data;
   }
-)
+);
 
 export const deleteUpload = createAsyncThunk(
   "uploads/deleteUpload",
@@ -46,22 +41,18 @@ export const updateUpload = createAsyncThunk(
   }
 );
 
-
-
 const postsSlice = createSlice({
   name: "uploads",
   initialState: {
-    entities: [], 
-    status: "idle", 
+    entities: [],
+    status: "idle",
   },
   reducers: {
-     uploadAdded(state, action) {
-      // using createSlice lets us mutate state!
-      state.entities.push( action.payload);
-       },
+    uploadAdded(state, action) {
+      state.entities.push(action.payload);
+    },
   },
   extraReducers: {
-    // handle async actions: pending, fulfilled, rejected (for errors)
     [fetchUploads.pending](state) {
       state.status = "loading";
     },
@@ -70,17 +61,11 @@ const postsSlice = createSlice({
       state.status = "idle";
     },
     [updateUpload.fulfilled](state, action) {
-      state = state.filter(
-        (upload) => upload.id !== action.payload.id
-      );
+      state = state.filter((upload) => upload.id !== action.payload.id);
       state = [...state, action.payload];
     },
-    
   },
 });
-
-
-
 
 export const { uploadAdded } = postsSlice.actions;
 export default postsSlice.reducer;

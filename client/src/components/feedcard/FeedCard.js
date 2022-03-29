@@ -1,15 +1,7 @@
-import React from "react"
+import React from "react";
 
-function FeedCard(){
-    
-
-    return (
-
-        <div>
-            my feed
-            
-        </div>
-    )
+function FeedCard() {
+  return <div>my feed</div>;
 }
 
-export default FeedCard
+export default FeedCard;
