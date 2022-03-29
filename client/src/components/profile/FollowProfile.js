@@ -15,8 +15,13 @@ function FollowProfile ({user}){
     const [showFollowing, setShowFollowing] = useState(false);
     const [showFollowers, setShowFollowers] = useState(false);
     const [followingsId, setFollowingsId] = useState([])
+    const [followerLength, setFollowerLength] = useState(0)
     const followings = otherUser.followings;
     const followers = otherUser.followers;
+    let followingLength = followings ? followings.length : console.log(null);
+    let followersLength = followers ? followers.length : console.log(null)
+
+    console.log(followingLength)
     
     function handleFollow(){
         if (!follow) {
@@ -30,6 +35,7 @@ function FollowProfile ({user}){
                 follower_id: user.id, 
                 followed_user_id: otherUser.id
             }),
+
         })
             setFollow(true) 
         }
@@ -44,6 +50,8 @@ function FollowProfile ({user}){
                     followed_user_id: otherUser.id
                 }),
             })
+            
+                
                 setFollow(false)
         }
     }
@@ -63,17 +71,15 @@ function FollowProfile ({user}){
           .then((r) => r.json())
           .then((data) => {
             setOtherUser(data);
-            followingsId.includes(data.id) ? setFollow(true) : setFollow(false)
             console.log("user_profile", data)
-            
           });
       fetch(`/user_followings`)
         .then((r) => r.json())
         .then((data) => {
           setFollowingsId(data);
+          data.includes(Number(id)) ? setFollow(true) : setFollow(false)
           console.log('following list', data )
         });
-        
     }, [id]);
 
     return (
@@ -84,8 +90,8 @@ function FollowProfile ({user}){
                         <img src={otherUser.image}/>
                         <Card.Body>
                             <Card.Title>{otherUser.username}</Card.Title>
-                            <h4 onClick={handleShowFollowing}>Following: {followings ? followings.length : console.log(null)}</h4>
-                            <h4 onClick={handleShowFollowers}>Followers: {followers ? followers.length : console.log(null)}</h4>
+                            <h4 onClick={handleShowFollowing}>Following: {followingLength}</h4>
+                            <h4 onClick={handleShowFollowers}>Followers: {followersLength}</h4>
                             {follow?(
                             <Button onClick={handleFollow}>Unfollow</Button>
                             ):(

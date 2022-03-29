@@ -4,8 +4,8 @@ import {Container, Row, Col} from 'react-bootstrap';
 
 
 function UserFeed ({user, weather, users}){
-    const temp = weather.main.temp
-    const feelsLike = weather.main.feels_like
+    const temp = weather && weather.main.temp
+    const feelsLike = weather && weather.main.feels_like
     
     return (
         <div>

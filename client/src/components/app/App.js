@@ -19,6 +19,7 @@ function App() {
   const dispatch = useDispatch();
   const [weather, setWeather] = useState([])
   const [users, setUsers] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchUploads());
@@ -27,7 +28,6 @@ function App() {
   function updateHandler(about){
     setUser(about)
   }
-  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("/uploads")
@@ -50,9 +50,7 @@ function App() {
     }).then(setRemoveRequest(!removeRequest))
   }
 
-
   useEffect(() => {
-    // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -68,7 +66,6 @@ function App() {
             setUser(null);
         }
     });
-    // Navigate to home page after logout and clear history
     navigate("/");
 }
 
@@ -78,18 +75,15 @@ useEffect(() => {
     .then((data) => setWeather(data));
 }, []);
 
-
-
 if (!user) return (
     <>
     <Container>
-      
+
     </Container>
     <Login onLogin={setUser}/>
     </>
   );
 
-  
   return (
     <div className="App">
      <NavBar user={user} handleLogOutClick={handleLogOutClick}/>

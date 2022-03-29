@@ -17,7 +17,7 @@ function FollowerCard({image, username, id}){
                         />
                     </Col>
                     <Col>
-                    <Link to={`/user/${id}`}>{username}</Link>
+                        <Link to={`/user/${id}`}>{username}</Link>
                     </Col>
                 </Row>
             </Container>

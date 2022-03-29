@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 
 function FollowingCard ({username, image, id}){
     return (
-        
         <div>
             <Container>
                 <Row>
@@ -19,8 +18,7 @@ function FollowingCard ({username, image, id}){
                         <Link to={`/user/${id}`}>{username}</Link>
                     </Col>
                 </Row>
-            </Container>
-            
+            </Container>  
         </div>
     )
 }

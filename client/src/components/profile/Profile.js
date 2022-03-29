@@ -45,7 +45,7 @@ function Profile({user, updateHandler, handleRemovePlant, uploadData}){
                                     <Modal.Title>Following</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    {followings.map((following) => {
+                                    {followings && followings.map((following) => {
                                         return (
                                             <FollowingCard
                                                 key={following.id}
@@ -63,7 +63,7 @@ function Profile({user, updateHandler, handleRemovePlant, uploadData}){
                                     <Modal.Title>Followers</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    {followers.map((follower) => {
+                                    {followers && followers.map((follower) => {
                                         return (
                                             <FollowerCard
                                                 key={follower.id}
