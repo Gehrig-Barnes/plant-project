@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FeedCard from "../feedcard/FeedCard";
 import { Container, Row, Col } from "react-bootstrap";
+import "./UserFeed.css"
 
 function UserFeed({weather, feed}) {
   const temp = weather && weather.main.temp;
@@ -8,7 +9,9 @@ function UserFeed({weather, feed}) {
 
   return (
     <div>
+      
       <Container>
+      
         <Row>
           <Col>
             Current Temperature: {Math.trunc((temp - 273.15) * (9 / 5) + 32)}°F
@@ -17,10 +20,11 @@ function UserFeed({weather, feed}) {
             Feels Like: {Math.trunc((feelsLike - 273.15) * (9 / 5) + 32)}°F
           </Col>
         </Row>
+        <h2>my feed</h2>
       </Container>
       {feed.map((f) => {
         return (
-          <FeedCard
+          <FeedCard className="feedCard"
             name = {f.user.username}
             image = {f.image}
             description = {f.description}
