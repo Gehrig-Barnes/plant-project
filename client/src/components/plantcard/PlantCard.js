@@ -4,6 +4,7 @@ import deleteUpload from "../plantpost/postsSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { Card, Modal, Col, Row } from "react-bootstrap";
 
 function PlantCard({ image, description, likes, date, handleRemovePlant, id }) {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function PlantCard({ image, description, likes, date, handleRemovePlant, id }) {
   }
   return (
     <div>
+      <Card style={{ width: "28rem" }} className="posts">
       <p>{description}</p>
       <img src={image} />
       <p>Claps: {likes}</p>
@@ -21,6 +23,7 @@ function PlantCard({ image, description, likes, date, handleRemovePlant, id }) {
       <Link to={`/profile/${id}`} className="seemorebutton">
         Edit
       </Link>
+      </Card>
     </div>
   );
 }

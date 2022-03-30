@@ -20,10 +20,17 @@ function App() {
   const [weather, setWeather] = useState([]);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const [feed, setFeed] = useState([])
 
   useEffect(() => {
     dispatch(fetchUploads());
   }, [dispatch]);
+
+  useEffect(() => {
+    fetch("/feed")
+      .then((r) => r.json())
+      .then((data) => setFeed(data));
+  }, []);
 
   function updateHandler(about) {
     setUser(about);
@@ -104,7 +111,7 @@ function App() {
         />
         <Route
           path="/"
-          element={<UserFeed user={user} weather={weather} users={users} />}
+          element={<UserFeed user={user} weather={weather} feed={feed}/>}
         />
       </Routes>
     </div>

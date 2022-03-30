@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import FeedCard from "../feedcard/FeedCard";
 import { Container, Row, Col } from "react-bootstrap";
 
-function UserFeed({ user, weather, users }) {
+function UserFeed({weather, feed}) {
   const temp = weather && weather.main.temp;
   const feelsLike = weather && weather.main.feels_like;
 
@@ -18,6 +18,18 @@ function UserFeed({ user, weather, users }) {
           </Col>
         </Row>
       </Container>
+      {feed.map((f) => {
+        return (
+          <FeedCard
+            name = {f.user.username}
+            image = {f.image}
+            description = {f.description}
+            likes = {f.likes}
+            key = {f.id}
+            id = {f.id}
+          />
+        )
+      })}
     </div>
   );
 }

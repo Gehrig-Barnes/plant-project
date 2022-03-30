@@ -110,7 +110,7 @@ function Profile({ user, updateHandler, handleRemovePlant, uploadData }) {
       </Row>
 
       <h3 className="my_post_title">My Posts</h3>
-      <Card style={{ width: "28rem" }} className="posts">
+      <div >
         {uploads.map((post) => {
           return (
             <PlantCard
@@ -124,7 +124,7 @@ function Profile({ user, updateHandler, handleRemovePlant, uploadData }) {
             />
           );
         })}
-      </Card>
+      </div>
     </div>
   );
 }

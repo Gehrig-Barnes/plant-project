@@ -9,8 +9,6 @@ class FollowsController < ApplicationController
         render json: new_follow, status: :created
     end
 
-    
-
     def delete_follow
         follow = Follow.find_by(follow_params)
         follow.destroy

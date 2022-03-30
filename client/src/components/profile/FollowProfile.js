@@ -111,7 +111,7 @@ function FollowProfile({ user }) {
       <h3 className="user_post_title" className="my_post_title">
         Posts
       </h3>
-      <Card style={{ width: "28rem" }} className="posts">
+      <div>
         {uploads?.map((post) => {
           return (
             <FollowPlantCard
@@ -123,7 +123,7 @@ function FollowProfile({ user }) {
             />
           );
         })}
-      </Card>
+      </div>
 
       <Modal show={showFollowing} onHide={handleShowFollowing}>
         <Modal.Header closeButton>
