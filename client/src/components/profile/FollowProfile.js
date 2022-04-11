@@ -91,7 +91,7 @@ function FollowProfile({ user }) {
                 Followers: {followersLength}
               </h4>
               {follow ? (
-                <Button onClick={handleFollow}>Unfollow</Button>
+                <Button onClick={handleFollow}>following</Button>
               ) : (
                 <Button onClick={handleFollow}>follow</Button>
               )}

@@ -17,7 +17,6 @@ function App() {
   const [plants, setPlants] = useState([]);
   const uploadData = useSelector((state) => state.posts.entities);
   const dispatch = useDispatch();
-  const [weather, setWeather] = useState([]);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const [feed, setFeed] = useState([])
@@ -76,13 +75,7 @@ function App() {
     navigate("/");
   }
 
-  useEffect(() => {
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=41.85&lon=-87.65&appid=0479cadb45fb034e2df702f81bb7355a"
-    )
-      .then((r) => r.json())
-      .then((data) => setWeather(data));
-  }, []);
+ 
 
   if (!user)
     return (
@@ -111,7 +104,7 @@ function App() {
         />
         <Route
           path="/"
-          element={<UserFeed user={user} weather={weather} feed={feed}/>}
+          element={<UserFeed user={user} feed={feed}/>}
         />
       </Routes>
     </div>

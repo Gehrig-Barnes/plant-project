@@ -3,28 +3,18 @@ import FeedCard from "../feedcard/FeedCard";
 import { Container, Row, Col } from "react-bootstrap";
 import "./UserFeed.css"
 
-function UserFeed({weather, feed}) {
-  const temp = weather && weather.main.temp;
-  const feelsLike = weather && weather.main.feels_like;
+function UserFeed({feed}) {
 
   return (
     <div>
       
       <Container>
-      
-        <Row>
-          <Col>
-            Current Temperature: {Math.trunc((temp - 273.15) * (9 / 5) + 32)}°F
-          </Col>
-          <Col>
-            Feels Like: {Math.trunc((feelsLike - 273.15) * (9 / 5) + 32)}°F
-          </Col>
-        </Row>
-        <h2>my feed</h2>
+        <h2 className="feedCard">my feed</h2>
       </Container>
+      <div className="feedCard">
       {feed.map((f) => {
         return (
-          <FeedCard className="feedCard"
+          <FeedCard 
             name = {f.user.username}
             image = {f.image}
             description = {f.description}
@@ -34,6 +24,7 @@ function UserFeed({weather, feed}) {
           />
         )
       })}
+      </div>
     </div>
   );
 }
