@@ -5,6 +5,8 @@ import "./UserFeed.css"
 
 function UserFeed({feed}) {
 
+
+
   return (
     <div>
       
@@ -21,6 +23,9 @@ function UserFeed({feed}) {
             likes = {f.likes}
             key = {f.id}
             id = {f.id}
+            pic = {f.user.image}
+            userId={f.user.id}
+
           />
         )
       })}
