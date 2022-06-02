@@ -29,7 +29,7 @@ function LoginForm({ onLogin }) {
       <Container>
         <Card style={{ width: "20rem" }} className="login_card">
           <Card.Body>
-            <h1 className="welcome">PotHeads 🪴 </h1>
+            <h1 className="welcome">Planters 🪴 </h1>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="login">
                 <Form.Label>Email address</Form.Label>

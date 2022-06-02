@@ -14,7 +14,7 @@ function NavBar({ handleLogOutClick }) {
           className="logo"
         />
         <Navbar.Brand href="/" className="brand">
-          PotHeads
+          Planters
         </Navbar.Brand>
         <Nav style={{ paddingRight: 30 }} >
           <Nav.Link href="/profile">Profile</Nav.Link>
