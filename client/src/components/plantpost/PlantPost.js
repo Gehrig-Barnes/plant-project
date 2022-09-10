@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-function PlantPost({ user, handlePost, uploads }) {
+function PlantPost({ user, handlePost}) {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 

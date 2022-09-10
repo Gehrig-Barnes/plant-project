@@ -15,11 +15,10 @@ function FollowProfile({ user }) {
   const [followingsId, setFollowingsId] = useState([]);
   const followings = otherUser.followings;
   const followers = otherUser.followers;
-  let followingLength = followings ? followings.length : console.log(null);
-  let followersLength = followers ? followers.length : console.log(null);
+  let followingLength = followings ? followings.length : null;
+  let followersLength = followers ? followers.length : null;
 
-  console.log(followingLength);
-
+ 
   function handleFollow() {
     if (!follow) {
       fetch("/follows", {
@@ -64,14 +63,14 @@ function FollowProfile({ user }) {
       .then((r) => r.json())
       .then((data) => {
         setOtherUser(data);
-        console.log("user_profile", data);
+        
       });
     fetch(`/user_followings`)
       .then((r) => r.json())
       .then((data) => {
         setFollowingsId(data);
         data.includes(Number(id)) ? setFollow(true) : setFollow(false);
-        console.log("following list", data);
+        
       });
   }, [id]);
 
@@ -135,6 +134,7 @@ function FollowProfile({ user }) {
                   username={following.username}
                   image={following.image}
                   id={following.id}
+                  handleShowFollowing={handleShowFollowing}
                 />
               );
             })}
@@ -154,6 +154,7 @@ function FollowProfile({ user }) {
                   username={follower.username}
                   image={follower.image}
                   id={follower.id}
+                  handleShowFollowers={handleShowFollowers}
                 />
               );
             })}

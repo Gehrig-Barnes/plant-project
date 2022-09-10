@@ -2,8 +2,8 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function FollowerCard({ image, username, id }) {
-  console.log(id);
+function FollowerCard({ image, username, id, handleShowFollowers }) {
+ 
   return (
     <div>
       <Container>
@@ -12,7 +12,7 @@ function FollowerCard({ image, username, id }) {
             <img src={image} alt={image} width="50" height="50" />
           </Col>
           <Col>
-            <Link to={`/user/${id}`}>{username}</Link>
+            <Link onClick={handleShowFollowers} to={`/user/${id}`}>{username}</Link>
           </Col>
         </Row>
       </Container>
