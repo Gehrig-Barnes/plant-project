@@ -9,7 +9,7 @@ function FollowerCard({ image, username, id }) {
       <Container>
         <Row>
           <Col>
-            <img src={image} width="50" height="50" />
+            <img src={image} alt={image} width="50" height="50" />
           </Col>
           <Col>
             <Link to={`/user/${id}`}>{username}</Link>

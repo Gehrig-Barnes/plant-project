@@ -4,10 +4,12 @@ import { useDispatch } from "react-redux";
 import { uploadAdded } from "./postsSlice";
 import { addNewPost } from "./postsSlice";
 
-function PlantPost({ user, uploadData }) {
+function PlantPost({ user, uploadData, updateFeedPost }) {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
+
+  console.log(uploadData)
 
   function manageImage(e) {
     const value = e.target.value;
@@ -30,6 +32,7 @@ function PlantPost({ user, uploadData }) {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(addNewPost(newPost));
+    updateFeedPost(newPost);
   }
 
   return (

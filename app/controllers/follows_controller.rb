@@ -22,7 +22,7 @@ class FollowsController < ApplicationController
 
     def feed
         feed = []
-        x = User.find(session[:user_id]).followings.map{|user| user.uploads.map{|item| feed << item}}
+        User.find(session[:user_id]).followings.map{|user| user.uploads.map{|item| feed << item}}
         render json: feed, status: :ok
     end
     

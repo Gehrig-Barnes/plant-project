@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Card, Modal, Col, Row, Container } from "react-bootstrap";
+import { Card, Col, Row} from "react-bootstrap";
 import "./feedcard.css"
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 function FeedCard({name, image, description, likes, id, pic, userId}) {
   const [clap, setClap] = useState(0);

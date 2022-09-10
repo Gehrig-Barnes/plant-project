@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import FollowPlantCard from "../plantcard/FollowPlantCard";
 import { Button, Modal, Card, Col, Row } from "react-bootstrap";
 import FollowingCard from "../FollowingCard/FollowingCard";
@@ -13,7 +13,6 @@ function FollowProfile({ user }) {
   const [showFollowing, setShowFollowing] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
   const [followingsId, setFollowingsId] = useState([]);
-  const [followerLength, setFollowerLength] = useState(0);
   const followings = otherUser.followings;
   const followers = otherUser.followers;
   let followingLength = followings ? followings.length : console.log(null);
@@ -81,7 +80,7 @@ function FollowProfile({ user }) {
       <Row className="justify-content-md-center">
         <Col>
           <Card style={{ width: "10rem" }} className="profile_card">
-            <img src={otherUser.image} />
+            <img src={otherUser.image} alt={otherUser.image}/>
             <Card.Body>
               <Card.Title>{otherUser.username}</Card.Title>
               <h4 onClick={handleShowFollowing}>
@@ -108,7 +107,7 @@ function FollowProfile({ user }) {
         </Col>
       </Row>
 
-      <h3 className="user_post_title" className="my_post_title">
+      <h3 className="user_post_title" >
         Posts
       </h3>
       <div>

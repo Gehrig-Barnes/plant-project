@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import FeedCard from "../feedcard/FeedCard";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import "./UserFeed.css"
 
 function UserFeed({feed}) {
 
-
+console.log(feed)
 
   return (
     <div>

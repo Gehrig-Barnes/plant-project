@@ -7,7 +7,7 @@ import FollowerCard from "../FollowingCard/FollowerCard";
 import { Card, Modal, Col, Row } from "react-bootstrap";
 import "./profile.css";
 
-function Profile({ user, updateHandler, handleRemovePlant, uploadData }) {
+function Profile({ user, updateHandler, handleRemovePlant, uploadData, updateFeedPost }) {
   const [flipAbout, setFlipAbout] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
@@ -104,6 +104,7 @@ function Profile({ user, updateHandler, handleRemovePlant, uploadData }) {
               user={user}
               updateHandler={updateHandler}
               uploadData={uploadData}
+              updateFeedPost={updateFeedPost}
             />
           </Card>
         </Col>

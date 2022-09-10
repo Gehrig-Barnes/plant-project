@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
-import deleteUpload from "../plantpost/postsSlice";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { Card, Modal, Col, Row } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 function PlantCard({ image, description, likes, date, handleRemovePlant, id }) {
-  const dispatch = useDispatch();
+  
 
-  function handleRemove() {
-    dispatch(deleteUpload(id));
-  }
+  
   return (
     <div>
       <Card style={{ width: "28rem" }} className="posts">
       <p>{description}</p>
-      <img src={image} />
+      <img src={image} alt={image}/>
       <p>Claps: {likes}</p>
       <Button onClick={() => handleRemovePlant(id)}>Remove</Button>
       <br></br>

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import updateUpload from "../plantpost/postsSlice";
+
 import { useParams, useNavigate } from "react-router-dom";
 
 function UploadEdit() {
   let nav = useNavigate();
-  const dispatch = useDispatch();
   const { id } = useParams();
   const [upload, setUpload] = useState("");
   const [description, setDescription] = useState("");
@@ -18,8 +16,6 @@ function UploadEdit() {
         setUpload(data);
       });
   }, [id]);
-
-  console.log(upload);
 
   function handleSubmit(e) {
     e.preventDefault();

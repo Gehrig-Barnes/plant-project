@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Modal, Col, Row } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 
 function FollowPlantCard({ image, description, likes, id }) {
   const [clap, setClap] = useState(0);
@@ -23,7 +23,7 @@ function FollowPlantCard({ image, description, likes, id }) {
     <div>
       <Card style={{ width: "28rem" }} className="posts">
       <p>{description}</p>
-      <img src={image} />
+      <img src={image} alt={image}/>
       <p>Claps: {likes + clap}</p>
       <br></br>
       <button onClick={handleLike}>👏</button>
