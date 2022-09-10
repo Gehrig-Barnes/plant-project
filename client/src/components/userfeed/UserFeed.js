@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import "./UserFeed.css";
 
 function UserFeed({ feed }) {
-  console.log(feed);
+ 
 
   return (
     <div>

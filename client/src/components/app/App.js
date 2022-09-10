@@ -14,7 +14,6 @@ import FollowProfile from "../profile/FollowProfile";
 function App() {
   const [user, setUser] = useState(null);
   const [removeRequest, setRemoveRequest] = useState(false);
-  const [plants, setPlants] = useState([]);
   const uploadData = useSelector((state) => state.posts.entities);
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
@@ -25,6 +24,8 @@ function App() {
     dispatch(fetchUploads());
   }, [dispatch]);
 
+  console.log(users)
+
   useEffect(() => {
     fetch("/feed")
       .then((r) => r.json())
@@ -34,12 +35,6 @@ function App() {
   function updateHandler(about) {
     setUser(about);
   }
-
-  useEffect(() => {
-    fetch("/uploads")
-      .then((r) => r.json())
-      .then((data) => setPlants(data));
-  }, [removeRequest]);
 
   useEffect(() => {
     fetch("/all_users")
