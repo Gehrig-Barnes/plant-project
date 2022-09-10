@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { uploadAdded } from "./postsSlice";
+
 import { addNewPost } from "./postsSlice";
 
-function PlantPost({ user, uploadData, updateFeedPost }) {
+function PlantPost({ user, handlePost }) {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
 
-  console.log(uploadData)
 
   function manageImage(e) {
-    const value = e.target.value;
+    let value = e.target.value;
     setImage(value);
+    
   }
 
   function manageDescription(e) {
-    const value = e.target.value;
+    let value = e.target.value;
     setDescription(value);
+    
   }
 
   const newPost = {
@@ -32,7 +33,9 @@ function PlantPost({ user, uploadData, updateFeedPost }) {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(addNewPost(newPost));
-    updateFeedPost(newPost);
+    handlePost(newPost)
+    setDescription("")
+    setImage("")
   }
 
   return (
@@ -44,6 +47,7 @@ function PlantPost({ user, uploadData, updateFeedPost }) {
             as="textarea"
             rows="2"
             value={description}
+            name="description"
             onChange={manageDescription}
           ></Form.Control>
           <Form.Control

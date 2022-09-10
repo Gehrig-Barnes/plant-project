@@ -21,6 +21,8 @@ function App() {
   const navigate = useNavigate();
   const [feed, setFeed] = useState([])
 
+  
+
 
   useEffect(() => {
     dispatch(fetchUploads());

@@ -11,9 +11,15 @@ function Profile({ user, updateHandler, handleRemovePlant, uploadData, updateFee
   const [flipAbout, setFlipAbout] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
-  const uploads = user.uploads;
+  const [uploads, setUploads] = useState(user.uploads)
   const followings = user.followings;
   const followers = user.followers;
+
+
+function handlePost(newPost){
+  setUploads([...uploads, newPost])
+}
+
 
   function handleFlipAbout() {
     setFlipAbout(!flipAbout);
@@ -105,6 +111,8 @@ function Profile({ user, updateHandler, handleRemovePlant, uploadData, updateFee
               updateHandler={updateHandler}
               uploadData={uploadData}
               updateFeedPost={updateFeedPost}
+              handlePost={handlePost}
+              
             />
           </Card>
         </Col>
