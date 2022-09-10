@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { client } from "../../API/client";
+import { client } from "../../../../API/client";
 
 export const fetchUploads = createAsyncThunk("uploads/fetchUploads", () => {
   return fetch("/uploads")

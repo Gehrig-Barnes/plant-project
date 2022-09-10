@@ -1,5 +1,5 @@
 import React from "react";
-import FeedCard from "../feedcard/FeedCard";
+import FeedCard from "./feedcard/FeedCard";
 import { Container } from "react-bootstrap";
 import "./UserFeed.css";
 

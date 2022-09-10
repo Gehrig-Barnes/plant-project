@@ -1,15 +1,16 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Login from "../login/Login";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import NavBar from "../navbar/NavBar";
 import { Container } from "react-bootstrap";
-import Profile from "../profile/Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUploads } from "../plantpost/postsSlice";
-import UploadEdit from "../uploadEdit/UploadEdit";
-import UserFeed from "../userfeed/UserFeed";
-import FollowProfile from "../profile/FollowProfile";
+
+import Login from "./Login/Login";
+import NavBar from "./NavBar/NavBar";
+import Profile from "./Profile/Profile";
+import UploadEdit from "./UploadEdit/UploadEdit";
+import UserFeed from "./UserFeed/UserFeed";
+import FollowProfile from "./Profile/FollowProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,7 +25,7 @@ function App() {
     dispatch(fetchUploads());
   }, [dispatch]);
 
-  console.log(users)
+  
 
   useEffect(() => {
     fetch("/feed")

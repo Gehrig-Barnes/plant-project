@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import LoginForm from "../loginform/LoginForm";
-import SignUpForm from "../signupform/SignUpForm";
 import { Container, Button, Figure, Row, Col } from "react-bootstrap";
+import LoginForm from "./LoginForm/LoginForm";
+import SignUpForm from "./SignUpForm/SignUpForm";
 import "./Login.css";
 
 function Login({ onLogin }) {

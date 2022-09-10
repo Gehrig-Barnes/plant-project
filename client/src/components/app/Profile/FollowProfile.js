@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import FollowPlantCard from "../plantcard/FollowPlantCard";
 import { Button, Modal, Card, Col, Row } from "react-bootstrap";
-import FollowingCard from "../FollowingCard/FollowingCard";
-import FollowerCard from "../FollowingCard/FollowerCard";
+
+import FollowPlantCard from "./plantcard/FollowPlantCard";
+import FollowingCard from "./FollowingCard/FollowingCard";
+import FollowerCard from "./FollowingCard/FollowerCard";
 import "./profile.css";
 
 function FollowProfile({ user }) {
