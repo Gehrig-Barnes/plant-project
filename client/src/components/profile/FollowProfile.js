@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import FollowPlantCard from "../plantcard/FollowPlantCard";
 import { Button, Modal, Card, Col, Row } from "react-bootstrap";
 import FollowingCard from "../FollowingCard/FollowingCard";
@@ -80,7 +80,7 @@ function FollowProfile({ user }) {
       <Row className="justify-content-md-center">
         <Col>
           <Card style={{ width: "10rem" }} className="profile_card">
-            <img src={otherUser.image} alt={otherUser.image}/>
+            <img src={otherUser.image} alt={otherUser.image} />
             <Card.Body>
               <Card.Title>{otherUser.username}</Card.Title>
               <h4 onClick={handleShowFollowing}>
@@ -107,9 +107,7 @@ function FollowProfile({ user }) {
         </Col>
       </Row>
 
-      <h3 className="user_post_title" >
-        Posts
-      </h3>
+      <h3 className="user_post_title">Posts</h3>
       <div>
         {uploads?.map((post) => {
           return (

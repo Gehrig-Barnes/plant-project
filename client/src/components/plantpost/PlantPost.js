@@ -1,29 +1,21 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 
-import { addNewPost } from "./postsSlice";
-
-function PlantPost({ user, handlePost }) {
+function PlantPost({ user, handlePost, uploads }) {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
-  const dispatch = useDispatch();
-
 
   function manageImage(e) {
     let value = e.target.value;
     setImage(value);
-    
   }
 
   function manageDescription(e) {
     let value = e.target.value;
     setDescription(value);
-    
   }
 
   const newPost = {
-    // id: uploadData.length + 1,
     image: image,
     description: description,
     likes: 0,
@@ -32,10 +24,19 @@ function PlantPost({ user, handlePost }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addNewPost(newPost));
-    handlePost(newPost)
-    setDescription("")
-    setImage("")
+    // dispatch(addNewPost(newPost));
+    // handlePost(newPost)
+    fetch("/uploads", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    })
+      .then((r) => r.json())
+      .then((data) => handlePost(data));
+    setDescription("");
+    setImage("");
   }
 
   return (

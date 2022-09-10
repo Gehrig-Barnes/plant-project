@@ -15,9 +15,18 @@ function Profile({ user, updateHandler, handleRemovePlant, uploadData, updateFee
   const followings = user.followings;
   const followers = user.followers;
 
+ 
 
 function handlePost(newPost){
   setUploads([...uploads, newPost])
+}
+
+function handleDelete(postId){
+  const filter = uploads.filter((upload) => {
+    return upload.id !== postId
+  })
+  setUploads(filter)
+  
 }
 
 
@@ -112,6 +121,7 @@ function handlePost(newPost){
               uploadData={uploadData}
               updateFeedPost={updateFeedPost}
               handlePost={handlePost}
+              uploads={uploads}
               
             />
           </Card>
@@ -130,6 +140,8 @@ function handlePost(newPost){
               likes={post.likes}
               date={post.created_at}
               handleRemovePlant={handleRemovePlant}
+              handleDelete={handleDelete}
+              
             />
           );
         })}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Login from "../login/Login";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import NavBar from "../navbar/NavBar";
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Profile from "../profile/Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUploads } from "../plantpost/postsSlice";
@@ -19,10 +19,7 @@ function App() {
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-  const [feed, setFeed] = useState([])
-
-  
-
+  const [feed, setFeed] = useState([]);
 
   useEffect(() => {
     dispatch(fetchUploads());
@@ -34,7 +31,6 @@ function App() {
       .then((data) => setFeed(data));
   }, []);
 
-  
   function updateHandler(about) {
     setUser(about);
   }
@@ -79,7 +75,6 @@ function App() {
     navigate("/");
   }
 
-
   if (!user)
     return (
       <>
@@ -102,14 +97,10 @@ function App() {
               user={user}
               updateHandler={updateHandler}
               handleRemovePlant={handleRemovePlant}
-             
             />
           }
         />
-        <Route
-          path="/"
-          element={<UserFeed user={user} feed={feed}/>}
-        />
+        <Route path="/" element={<UserFeed user={user} feed={feed} />} />
       </Routes>
     </div>
   );
