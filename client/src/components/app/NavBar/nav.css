@@ -1,12 +1,48 @@
-.brand{
-    font-style: oblique;
-}
 
-.nav {
+.navBar{
+    display: flex;
+    position: fixed;
+    
+    border-bottom: 1px solid rgb(var(--ig-elevated-separator));
     background-color: rgb(23, 72, 15);
+    width: 100%;
+    top: 0;
+    transition: height var(--desktop-nav-anim-duration) ease-in-out;
+    z-index: 3;
+    
+}
+#dropDown{
+    
+    position: absolute;
+    top: 50px;
+    right: 70px;
 }
 
 .logo{
-    width: 120%;
-
+    
+    width: 50%;
+   
 }
+
+
+
+.searchBar {
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    height: 36px;
+    min-width: 125px;
+    position: relative;
+    width: var(--desktop-nav-search-box-large-width);
+    flex-shrink: 0;
+    
+}
+
+/* .brand{
+    position: relative;
+    margin-left: -50%;
+} */
+
+
+

@@ -1,3 +1,6 @@
 .search-bar-dropdown{
+    position: absolute;
     width: 30em;
+    top: 33%;
+    
 }

@@ -1,29 +1,39 @@
 import React from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "./nav.css";
 import logo from "./logo.png";
 import SearchBar from "./SearchBar/SearchBar";
 
 function NavBar({ handleLogOutClick, setSearch, filterSearch, search }) {
   return (
-    <div className="nav">
-      <Navbar style={{ minWidth: 800 }} >
-        
-        <Navbar.Brand href="/" className="brand">
-        <img width="" src={logo} alt="plant" className="logo" href='/'/>
-        </Navbar.Brand>
+    <div className="nav" id="nav">
+      <Navbar className="navBar">
+        <div className="brand">
+          <Navbar.Brand href="/">
+            <img width="" src={logo} alt="plant" className="logo" href="/" />
+          </Navbar.Brand>
+        </div>
 
         <Nav style={{ paddingRight: 30 }}>
-          <Nav.Link href="/profile">Profile</Nav.Link>
-          <Nav.Link href="/">My Feed</Nav.Link>
-          <SearchBar
-            setSearch={setSearch}
-            filterSearch={filterSearch}
-            search={search}
-          />
-          <Button onClick={handleLogOutClick} style={{ marginLeft: 1120 }}>
-            Logout
-          </Button>
+        
+            <SearchBar
+              setSearch={setSearch}
+              filterSearch={filterSearch}
+              search={search}
+            />
+         
+          <div id="dropDown">
+            <NavDropdown title="Dropdown">
+              <NavDropdown.Item className="item" href="/profile">
+                Profile
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/">Feed</NavDropdown.Item>
+              <NavDropdown.Item>settings</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogOutClick}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
         </Nav>
       </Navbar>
     </div>

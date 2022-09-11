@@ -8,9 +8,7 @@ function UserFeed({ feed }) {
 
   return (
     <div>
-      <Container>
-        <h2 className="feedCard">my feed</h2>
-      </Container>
+      
       <div className="feedCard">
         {feed.map((f) => {
           return (

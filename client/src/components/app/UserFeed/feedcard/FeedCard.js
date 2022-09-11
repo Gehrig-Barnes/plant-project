@@ -26,7 +26,7 @@ function FeedCard({ name, image, description, likes, id, pic, userId }) {
   }
 
   return (
-    <div>
+    <div className="feedCard">
       <Card style={{ width: "28rem" }} className="posts" id="post">
         <Row>
           <Col>
