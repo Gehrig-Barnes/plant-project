@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUploads } from "../plantpost/postsSlice";
+import { fetchUploads } from "./Profile/plantpost/postsSlice";
 
 import Login from "./Login/Login";
 import NavBar from "./NavBar/NavBar";
@@ -20,12 +20,27 @@ function App() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const [feed, setFeed] = useState([]);
+  const [search, setSearch] = useState('');
+
+  
 
   useEffect(() => {
     dispatch(fetchUploads());
   }, [dispatch]);
 
-  
+
+  function filterSearch() {
+    const filterUser = users.filter((user) => {
+      return (
+        user.username.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLocaleLowerCase())
+      );
+    });
+
+    return filterUser;
+  }
+
+
 
   useEffect(() => {
     fetch("/feed")
@@ -81,7 +96,13 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} handleLogOutClick={handleLogOutClick} />
+      <NavBar
+        user={user}
+        handleLogOutClick={handleLogOutClick}
+        setSearch={setSearch}
+        filterSearch={filterSearch}
+        search={search}
+      />
       <Routes>
         <Route path="/user/:id" element={<FollowProfile user={user} />} />
         <Route path="profile/:id" element={<UploadEdit />} />

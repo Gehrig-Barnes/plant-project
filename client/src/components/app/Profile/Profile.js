@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import PlantCard from "../../plantcard/PlantCard";
+import { Card, Modal, Col, Row } from "react-bootstrap";
+import PlantCard from "./plantcard/PlantCard";
 import AboutPatch from "./aboutpatch/AboutPatch";
 import PlantPost from "./plantpost/PlantPost";
 import FollowingCard from "./FollowingCard/FollowingCard";
 import FollowerCard from "./FollowingCard/FollowerCard";
-import { Card, Modal, Col, Row } from "react-bootstrap";
 import "./profile.css";
 
 function Profile({ user, updateHandler, handleRemovePlant, uploadData, updateFeedPost }) {
