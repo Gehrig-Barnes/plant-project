@@ -4,7 +4,7 @@ import "./search.css";
 import { useNavigate } from "react-router-dom";
 
 function SearchBar({ setSearch, filterSearch, search }) {
-    let navigate = useNavigate();
+  let navigate = useNavigate();
   function handleUserName(e) {
     let value = e.target.value;
     setSearch(value);
@@ -17,9 +17,11 @@ function SearchBar({ setSearch, filterSearch, search }) {
           <button
             type="button"
             className="list-group-item list-group-item-action"
-            onClick={() => navigate(`/user/${user.id}`)}
+            onClick={() => {
+              navigate(`/user/${user.id}`);
+              setSearch("");
+            }}
             key={user.id}
-            
           >
             <link></link>
             {user.username}
@@ -37,6 +39,7 @@ function SearchBar({ setSearch, filterSearch, search }) {
         name="user_name"
         className="form-control"
         onChange={handleUserName}
+        value={search}
       ></input>
       <ul className="list-group">{testStuff()}</ul>
     </div>

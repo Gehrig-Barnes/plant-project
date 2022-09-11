@@ -19,7 +19,8 @@ function FollowProfile({ user }) {
   let followingLength = followings ? followings.length : null;
   let followersLength = followers ? followers.length : null;
 
- 
+
+
   function handleFollow() {
     if (!follow) {
       fetch("/follows", {
@@ -57,6 +58,7 @@ function FollowProfile({ user }) {
     setShowFollowers(!showFollowers);
   }
 
+  
   const uploads = otherUser.uploads;
 
   useEffect(() => {
@@ -87,7 +89,7 @@ function FollowProfile({ user }) {
                 Following: {followingLength}
               </h4>
               <h4 onClick={handleShowFollowers}>
-                Followers: {followersLength}
+                Followers: {followersLength }
               </h4>
               {follow ? (
                 <Button onClick={handleFollow}>following</Button>
