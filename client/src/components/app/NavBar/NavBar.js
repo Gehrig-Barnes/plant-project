@@ -15,13 +15,13 @@ function NavBar({ handleLogOutClick, setSearch, filterSearch, search }) {
         </div>
 
         <Nav style={{ paddingRight: 30 }}>
-        
+          <div className="searchBar">
             <SearchBar
               setSearch={setSearch}
               filterSearch={filterSearch}
               search={search}
             />
-         
+         </div>
           <div id="dropDown">
             <NavDropdown title="Dropdown">
               <NavDropdown.Item className="item" href="/profile">

@@ -25,18 +25,11 @@
 }
 
 
-
 .searchBar {
-    align-items: center;
-    display: flex;
-    flex: 0 1 auto;
-    flex-direction: column;
-    height: 36px;
-    min-width: 125px;
-    position: relative;
-    width: var(--desktop-nav-search-box-large-width);
-    flex-shrink: 0;
-    
+    position: absolute;
+    top: 35%;
+    right: 66%;
+    justify-content: center;
 }
 
 /* .brand{
