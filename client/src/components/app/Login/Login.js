@@ -15,7 +15,7 @@ function Login({ onLogin }) {
             <Figure>
               <Figure.Image
                 width="300"
-                src="https://p.kindpng.com/picc/s/2-27358_pot-plant-clipart-transparent-pot-plant-png-clipart.png"
+                src="https://wallpaperaccess.com/full/676563.jpg"
               />
             </Figure>
           </Col>
