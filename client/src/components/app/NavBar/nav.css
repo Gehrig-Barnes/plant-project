@@ -1,9 +1,12 @@
-
+.brand{
+    font-style: oblique;
+}
 
 .nav {
-    background-color: rgb(80, 190, 122);
+    background-color: rgb(23, 72, 15);
 }
 
 .logo{
-    width: 5%;
+    width: 120%;
+
 }

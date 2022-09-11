@@ -7,11 +7,10 @@ import SearchBar from "./SearchBar/SearchBar";
 function NavBar({ handleLogOutClick, setSearch, filterSearch, search }) {
   return (
     <div className="nav">
-      <Navbar style={{ minWidth: 800 }}>
-        <img width="" src={logo} alt="plant" className="logo" />
-
+      <Navbar style={{ minWidth: 800 }} >
+        
         <Navbar.Brand href="/" className="brand">
-          Planters
+        <img width="" src={logo} alt="plant" className="logo" href='/'/>
         </Navbar.Brand>
 
         <Nav style={{ paddingRight: 30 }}>
