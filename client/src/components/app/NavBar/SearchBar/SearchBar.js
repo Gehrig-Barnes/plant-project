@@ -28,7 +28,7 @@ function SearchBar({ setSearch, filterSearch, search }) {
           </button>
         );
       });
-      return createButton;
+      return createButton.splice(0, 5);
     }
   }
 
