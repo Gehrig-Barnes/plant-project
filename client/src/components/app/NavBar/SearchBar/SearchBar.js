@@ -34,13 +34,17 @@ function SearchBar({ setSearch, filterSearch, search }) {
 
   return (
     <div className="search-bar-dropdown">
+      <label for="name" id="label">🔎</label>
       <input
         type="text"
         name="user_name"
         className="form-control"
         onChange={handleUserName}
         value={search}
-      ></input>
+        placeholder="Search..."
+        id="name"
+      />
+      
       <ul className="list-group">{testStuff()}</ul>
     </div>
   );

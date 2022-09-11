@@ -21,9 +21,9 @@ function NavBar({ handleLogOutClick, setSearch, filterSearch, search }) {
               filterSearch={filterSearch}
               search={search}
             />
-         </div>
+          </div>
           <div id="dropDown">
-            <NavDropdown title="Dropdown">
+            <NavDropdown title="三">
               <NavDropdown.Item className="item" href="/profile">
                 Profile
               </NavDropdown.Item>
