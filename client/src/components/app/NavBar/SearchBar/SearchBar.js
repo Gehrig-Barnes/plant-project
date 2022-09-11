@@ -1,8 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./search.css";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar({ setSearch, filterSearch, search }) {
+    let navigate = useNavigate();
   function handleUserName(e) {
     let value = e.target.value;
     setSearch(value);
@@ -15,9 +17,11 @@ function SearchBar({ setSearch, filterSearch, search }) {
           <button
             type="button"
             className="list-group-item list-group-item-action"
-            onClick={()=> console.log(user.id)}
+            onClick={() => navigate(`/user/${user.id}`)}
             key={user.id}
+            
           >
+            <link></link>
             {user.username}
           </button>
         );
@@ -25,7 +29,6 @@ function SearchBar({ setSearch, filterSearch, search }) {
       return createButton;
     }
   }
-
 
   return (
     <div className="search-bar-dropdown">
@@ -35,9 +38,7 @@ function SearchBar({ setSearch, filterSearch, search }) {
         className="form-control"
         onChange={handleUserName}
       ></input>
-      <ul className="list-group">
-        {testStuff()}
-      </ul>
+      <ul className="list-group">{testStuff()}</ul>
     </div>
   );
 }
